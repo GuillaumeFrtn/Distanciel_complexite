@@ -95,6 +95,7 @@ int LPT(instance inst)
 	return max;
 }
 
+<<<<<<< HEAD
 int MyAlgo(instance inst, int m, int n, int durees[])
 {
 	int TmyAlgo;
@@ -187,6 +188,11 @@ int MyAlgo(instance inst, int m, int n, int durees[])
 	TmyAlgo = dureeMax;
 		
 return TmyAlgo;
+=======
+int MyAlgo()
+{
+
+>>>>>>> ddb0afca8bdf6459c60e28ecd5a2e2d30b564cdf
 }
 
 int maximum(instance &inst)
@@ -272,7 +278,11 @@ void clavier()
 	cout << "Borne inférieure moyenne = " << moyenne(inst) << endl;
 	cout << "Résultat LSA = " << LSA(inst) << endl;
 	cout << "Résultat LPT = " << LPT(inst) << endl;
+<<<<<<< HEAD
 	cout << "Résultat MyAlgo = " << MyAlgo(inst) << endl;
+=======
+	cout << "Résultat MyAlgo = " << endl;
+>>>>>>> ddb0afca8bdf6459c60e28ecd5a2e2d30b564cdf
 	cout << endl;
 }
 
@@ -296,7 +306,11 @@ void fichier()
 		cout << "Borne inférieure moyenne = " << moyenne(inst) << endl;
 		cout << "Résultat LSA = " << LSA(inst) << endl;
 		cout << "Résultat LPT = " << LPT(inst) << endl;
+<<<<<<< HEAD
 		cout << "Résultat MyAlgo = " << MyAlgo(inst) << endl;
+=======
+		cout << "Résultat MyAlgo = " << endl;
+>>>>>>> ddb0afca8bdf6459c60e28ecd5a2e2d30b564cdf
 		cout << endl;
 
 		fichier.close();
@@ -397,7 +411,12 @@ void generation()
 			fichier << "Borne inférieure moyenne = " << moyenne(inst) << endl;
 			fichier << "Résultat LSA = " << LSA(inst) << endl;
 			fichier << "Résultat LPT = " << LPT(inst) << endl;
+<<<<<<< HEAD
 			fichier << "Résultat MyAlgo = " << MyAlgo(inst) << endl;
+=======
+			fichier << "Résultat MyAlgo = " << endl;
+			cout << endl;
+>>>>>>> ddb0afca8bdf6459c60e28ecd5a2e2d30b564cdf
 
 			inst.durees.erase(inst.durees.begin(), inst.durees.end());
 		}

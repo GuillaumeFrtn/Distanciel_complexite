@@ -164,6 +164,101 @@ int LSA(int m, int n, int durees[])
 	return Tlsa;
 }
 
+int myAlgo(int m, int n, int durees[])
+{
+	int TmyAlgo;
+	int dureeMax;
+	int i;
+	int Tmachines[m];
+	int debut;
+	int fin;
+	int milieu;
+	int pleine;
+	bool estPleine[m];
+	int valMax;
+	int temp1;
+	int temp2;
+	int temp3;
+
+	tri_fusion(durees,n);
+
+	for (i=0; i<m; ++i)
+	{
+		estPleine[i] = false;
+		Tmachines[i] = 0;
+	}
+
+	valMax = 0;
+
+	for (i=0; i<n; ++i)
+	{
+		valMax += durees[i];
+	}
+	valMax = valMax/m;
+
+	debut = 0;
+	fin = n-1;
+	i = 0;
+	pleine = 0;
+	dureeMax = 0;
+	TmyAlgo = 0;
+
+
+	while (debut < fin and pleine != m)
+	{
+		temp1 = durees[debut] + durees[fin];
+		temp2 = durees[debut];
+		temp3 = durees[fin];
+
+		if (!estPleine[i%m])
+		{
+			if (Tmachines[i%m] + temp1 <= valMax)
+			{
+				Tmachines[i%m] = Tmachines[i%m] + temp1;
+				++debut;
+				--fin;
+			}
+			else if (Tmachines[i%m] + temp3 <= valMax)
+			{
+				Tmachines[i%m] = Tmachines[i%m] + temp3;
+				--fin;
+			}
+			else if (Tmachines[i%m] + temp2 <= valMax)
+			{
+				Tmachines[i%m] = Tmachines[i%m] + temp2;
+				++debut;
+			}
+			else
+			{
+				estPleine[i%m] = true;
+				++pleine;
+			}	
+		}
+		++i;
+	}
+
+	if (debut < fin)
+	{
+		for (i=debut; i<=fin; ++i)
+		{
+			Tmachines[plusPetit(Tmachines, m)] += durees[i];
+		}
+	}
+
+	dureeMax = Tmachines[0];
+	for (i=1; i<m; ++i)
+	{
+		if (Tmachines[i] > dureeMax)
+		{
+			dureeMax = Tmachines[i];
+		}
+	}
+	TmyAlgo = dureeMax;
+		
+	return TmyAlgo;
+	
+}
+
 int main()
 {
 	bool run = true;
@@ -183,6 +278,7 @@ int main()
 				int tab[] = {2, 7, 1, 3, 2, 6, 2, 3, 6, 2, 5};
 				cout << "LSA : " << LSA(3,11,tab) << endl;
 				cout << "LPT : " << LPT(3,11,tab) << endl;
+				cout << "myAlgo : " << myAlgo(3,11,tab) << endl;
 				
 			}
 				break;

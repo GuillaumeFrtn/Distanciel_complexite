@@ -95,8 +95,22 @@ int LPT(instance inst)
 	return max;
 }
 
-<<<<<<< HEAD
-int MyAlgo(instance inst, int m, int n, int durees[])
+int plusPetit(int T[], int taille)
+{
+	int min = T[0];
+	int indiceMin = 0;
+	for (int i=1; i<taille; ++i)
+	{
+		if (T[i] < min)
+		{
+			min = T[i];
+			indiceMin = i;
+		}
+	}
+	return indiceMin;
+}
+
+int MyAlgo(instance inst)
 {
 	int TmyAlgo;
 	int dureeMax;
@@ -112,7 +126,8 @@ int MyAlgo(instance inst, int m, int n, int durees[])
 	int temp2;
 	int temp3;
 
-	tri_fusion(inst.durees,inst.nbJob);
+
+	sort (inst.durees.begin(), inst.durees.end(), myfunction);
 
 	for (i=0; i<inst.nbMachine; ++i)
 	{
@@ -169,7 +184,7 @@ int MyAlgo(instance inst, int m, int n, int durees[])
 		++i;
 	}
 
-	if (debut < fin)
+	if (debut <= fin)
 	{
 		for (i=debut; i<=fin; ++i)
 		{
@@ -188,11 +203,6 @@ int MyAlgo(instance inst, int m, int n, int durees[])
 	TmyAlgo = dureeMax;
 		
 return TmyAlgo;
-=======
-int MyAlgo()
-{
-
->>>>>>> ddb0afca8bdf6459c60e28ecd5a2e2d30b564cdf
 }
 
 int maximum(instance &inst)
@@ -278,11 +288,7 @@ void clavier()
 	cout << "Borne inférieure moyenne = " << moyenne(inst) << endl;
 	cout << "Résultat LSA = " << LSA(inst) << endl;
 	cout << "Résultat LPT = " << LPT(inst) << endl;
-<<<<<<< HEAD
 	cout << "Résultat MyAlgo = " << MyAlgo(inst) << endl;
-=======
-	cout << "Résultat MyAlgo = " << endl;
->>>>>>> ddb0afca8bdf6459c60e28ecd5a2e2d30b564cdf
 	cout << endl;
 }
 
@@ -306,11 +312,7 @@ void fichier()
 		cout << "Borne inférieure moyenne = " << moyenne(inst) << endl;
 		cout << "Résultat LSA = " << LSA(inst) << endl;
 		cout << "Résultat LPT = " << LPT(inst) << endl;
-<<<<<<< HEAD
 		cout << "Résultat MyAlgo = " << MyAlgo(inst) << endl;
-=======
-		cout << "Résultat MyAlgo = " << endl;
->>>>>>> ddb0afca8bdf6459c60e28ecd5a2e2d30b564cdf
 		cout << endl;
 
 		fichier.close();
@@ -411,12 +413,7 @@ void generation()
 			fichier << "Borne inférieure moyenne = " << moyenne(inst) << endl;
 			fichier << "Résultat LSA = " << LSA(inst) << endl;
 			fichier << "Résultat LPT = " << LPT(inst) << endl;
-<<<<<<< HEAD
 			fichier << "Résultat MyAlgo = " << MyAlgo(inst) << endl;
-=======
-			fichier << "Résultat MyAlgo = " << endl;
-			cout << endl;
->>>>>>> ddb0afca8bdf6459c60e28ecd5a2e2d30b564cdf
 
 			inst.durees.erase(inst.durees.begin(), inst.durees.end());
 		}

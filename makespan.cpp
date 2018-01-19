@@ -34,28 +34,28 @@ void affichageModes()
 
 int LSA(instance inst)
 {
-	vector<int> chaipas (inst.nbMachine, 0);
-	int min = 999999;
+	vector<int> Tmachines (inst.nbMachine, 0);
+	int min = Tmachines[0];
 	int max = 0;
 	int indice = 0;
 	for (unsigned i=0; i<inst.nbJob; i++)
 	{
 		for (unsigned j=0; j<inst.nbMachine; j++)
 		{
-				if(chaipas[j] < min)
+				if(Tmachines[j] < min)
 				{
-					min = chaipas[j];
+					min = Tmachines[j];
 					indice = j;
 				}
 		}
-		chaipas[indice] = chaipas[indice] + inst.durees[i];
-		min = 999999;
+		Tmachines[indice] = Tmachines[indice] + inst.durees[i];
+		min = min + inst.durees[i];
 	}
 	for (unsigned j=0; j<inst.nbMachine; j++)
 	{
-		if(chaipas[j] > max)
+		if(Tmachines[j] > max)
 		{
-			max = chaipas[j];
+			max = Tmachines[j];
 		}
 	}
 	return max;
@@ -65,31 +65,38 @@ bool myfunction (int i,int j) { return (i>j); }
 
 int LPT(instance inst)
 {
-	vector<int> chaipas (inst.nbMachine, 0);
-	int min = 999999;
+	vector<int> Tmachines (inst.nbMachine, 0);
+	int min = Tmachines[0];
 	int max = 0;
 	int indice = 0;
 
 	sort (inst.durees.begin(), inst.durees.end(), myfunction);
 
-	for (unsigned i=0; i<inst.nbJob; i++)
+	if (inst.nbJob <= inst.nbMachine)
 	{
+		max = inst.durees[0];
+	}
+	else
+	{
+		for (unsigned i=0; i<inst.nbJob; i++)
+		{
+			for (unsigned j=0; j<inst.nbMachine; j++)
+			{
+					if(Tmachines[j] < min)
+					{
+						min = Tmachines[j];
+						indice = j;
+					}
+			}
+			Tmachines[indice] = Tmachines[indice] + inst.durees[i];
+			min = min + inst.durees[i];
+		}
 		for (unsigned j=0; j<inst.nbMachine; j++)
 		{
-				if(chaipas[j] < min)
-				{
-					min = chaipas[j];
-					indice = j;
-				}
-		}
-		chaipas[indice] = chaipas[indice] + inst.durees[i];
-		min = 999999;
-	}
-	for (unsigned j=0; j<inst.nbMachine; j++)
-	{
-		if(chaipas[j] > max)
-		{
-			max = chaipas[j];
+			if(Tmachines[j] > max)
+			{
+				max = Tmachines[j];
+			}
 		}
 	}
 	return max;

@@ -134,7 +134,7 @@ int MyAlgo(instance inst)
 	int temp3;
 
 
-	sort (inst.durees.begin(), inst.durees.end(), myfunction);
+	sort (inst.durees.begin(), inst.durees.end());
 
 	for (i=0; i<inst.nbMachine; ++i)
 	{
